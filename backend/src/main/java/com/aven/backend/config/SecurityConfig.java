@@ -19,10 +19,9 @@ import org.springframework.security.web.authentication.*;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final GithubOAuth2UserService githubOAuth2UserService;
-    private final AuthenticationSuccessHandler oauth2SuccessHandler;
-    private final AuthenticationFailureHandler oauth2FailureHandler;
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationSuccessHandler oauth2SuccessHandler,
+                                            AuthenticationFailureHandler oauth2FailureHandler) throws Exception {
         httpSecurity
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
